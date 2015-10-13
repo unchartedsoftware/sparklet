@@ -4,8 +4,8 @@
 ## Usage
 
 ```bash
-$ docker build -t docker.uncharted.software/tiny-spark-standalone .
-$ docker run -it docker.uncharted.software/tiny-spark-standalone bash
+$ docker build -t uncharted/sparklet .
+$ docker run -it uncharted/sparklet bash
 ```
 
 Then, inside the container
