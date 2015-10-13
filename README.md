@@ -3,13 +3,9 @@
 
 ## Usage
 
+By default, this container will run a spark-shell.
+
 ```bash
 $ docker build -t uncharted/sparklet .
-$ docker run -it uncharted/sparklet bash
-```
-
-Then, inside the container
-
-```bash
-$ spark-shell
+$ docker run -it uncharted/sparklet
 ```
