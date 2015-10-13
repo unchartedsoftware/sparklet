@@ -1,4 +1,4 @@
-# Tiny Spark
+# Sparklet
 > A small Spark cluster, running in standalone mode. Suitable for testing and development.
 
 ## Usage
