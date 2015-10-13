@@ -1,5 +1,5 @@
 # Tiny Spark
-> A small Spark "cluster", running in standalone mode. Suitable for testing and development.
+> A small Spark cluster, running in standalone mode. Suitable for testing and development.
 
 ## Usage
 
