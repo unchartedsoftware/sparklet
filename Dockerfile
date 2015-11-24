@@ -1,6 +1,6 @@
 #
 # Spark Standalone Container
-# Apache Spark 1.5.1
+# Apache Spark 1.5.2
 #
 # Runs a super-tiny, Spark standalone cluster in a container
 # Suitable for building test/development containers for spark apps
@@ -25,7 +25,7 @@ RUN \
   apt-get update && \
   # grab curl, java and ssh
   apt-get install -y curl oracle-java8-installer openssh-client openssh-server && \
-  curl http://apache.mirror.gtcomm.net/spark/spark-1.5.1/spark-1.5.1-bin-hadoop2.6.tgz > spark.tgz && \
+  curl http://apache.mirror.gtcomm.net/spark/spark-1.5.2/spark-1.5.2-bin-hadoop2.6.tgz > spark.tgz && \
   # generate a keypair and authorize it
   mkdir -p /root/.ssh && \
   ssh-keygen -f /root/.ssh/id_rsa -N "" && \
@@ -40,7 +40,7 @@ RUN \
 ADD startup.sh /startup.sh
 RUN chmod a+x /startup.sh
 
-ENV PATH /opt/spark-1.5.1-bin-hadoop2.6/bin:$PATH
+ENV PATH /opt/spark-1.5.2-bin-hadoop2.6/bin:$PATH
 
 ENTRYPOINT ["/startup.sh"]
 
