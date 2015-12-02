@@ -14,6 +14,8 @@ MAINTAINER Sean McIntyre <smcintyre@uncharted.software>
 
 # spark web admin port
 EXPOSE 8080
+# spark debugging port
+EXPOSE 9999
 
 WORKDIR /opt
 RUN \
