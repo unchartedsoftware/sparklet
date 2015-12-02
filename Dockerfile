@@ -26,7 +26,7 @@ RUN \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886 && \
   apt-get update && \
   # grab curl, java and ssh
-  apt-get install -y curl oracle-java8-installer openssh-client openssh-server && \
+  apt-get install -y --force-yes curl oracle-java8-installer openssh-client openssh-server && \
   curl http://apache.mirror.gtcomm.net/spark/spark-1.4.1/spark-1.4.1-bin-hadoop2.6.tgz > spark.tgz && \
   # generate a keypair and authorize it
   mkdir -p /root/.ssh && \
