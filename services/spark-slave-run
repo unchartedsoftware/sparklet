@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv sh
+
+export SPARK_WORKER_INSTANCES=2
+export SPARK_WORKER_CORES=1
+export SPARK_WORKER_MEMORY=1g
+
+exec s6-setuidgid daemon /opt/spark-1.6.0-bin-hadoop2.6/sbin/start-slave.sh spark://$HOSTNAME:7077

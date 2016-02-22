@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+echo "spark.master  spark://$HOSTNAME:7077" > /opt/spark-1.6.0-bin-hadoop2.6/conf/spark-defaults.conf
+
+exec s6-setuidgid daemon /opt/spark-1.6.0-bin-hadoop2.6/sbin/start-master.sh
