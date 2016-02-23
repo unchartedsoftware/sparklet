@@ -44,6 +44,7 @@ RUN \
 # upload init scripts
 ADD services/spark-master-run /etc/services.d/spark-master/run
 ADD services/spark-slave-run /etc/services.d/spark-slave/run
+ADD services/spark-slave2-run /etc/services.d/spark-slave2/run
 
 # upload permission fix script
 ADD fix-attrs/spark /etc/fix-attrs.d/spark
