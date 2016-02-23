@@ -24,7 +24,7 @@ RUN \
   # update packages
   apk upgrade --update && \
   # grab curl and ssh
-  apk add --update vim curl procps && \
+  apk add --update openssh vim curl procps && \
   curl http://apache.mirror.gtcomm.net/spark/spark-1.6.0/spark-1.6.0-bin-hadoop2.6.tgz > spark.tgz && \
   # generate a keypair and authorize it
   mkdir -p /root/.ssh && \
