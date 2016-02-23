@@ -9,24 +9,22 @@
 # $ docker build -t uncharted/sparklet .
 # $ docker run -p 8080:8080 -it uncharted/sparklet
 
-FROM debian:8.2
+FROM anapsix/alpine-java:latest
 MAINTAINER Sean McIntyre <smcintyre@uncharted.software>
 
 # spark web admin port
 EXPOSE 8080
+
 # spark debugging port
 EXPOSE 9999
 
 WORKDIR /opt
+
 RUN \
-  echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
-  echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections && \
-  echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" > /etc/apt/sources.list.d/webupd8team-java.list && \
-  echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list.d/webupd8team-java.list && \
-  apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886 && \
-  apt-get update && \
-  # grab curl, java and ssh
-  apt-get install -y curl oracle-java8-installer openssh-client openssh-server && \
+  # update packages
+  apk upgrade --update && \
+  # grab curl and ssh
+  apk add --update openssh vim curl procps && \
   curl http://apache.mirror.gtcomm.net/spark/spark-1.5.1/spark-1.5.1-bin-hadoop2.6.tgz > spark.tgz && \
   # generate a keypair and authorize it
   mkdir -p /root/.ssh && \
@@ -35,15 +33,14 @@ RUN \
   # extract spark
   tar -xzf spark.tgz && \
   # cleanup
-  rm spark.tgz && \
-  apt-get clean
+  rm spark.tgz
 
-# create startup script
+ENV PATH /opt/spark-1.5.1-bin-hadoop2.6/bin:$PATH
+ENV JAVA_HOME /opt/jdk
+
 ADD startup.sh /startup.sh
 RUN chmod a+x /startup.sh
 
-ENV PATH /opt/spark-1.5.1-bin-hadoop2.6/bin:$PATH
-
-ENTRYPOINT ["/startup.sh"]
+ENTRYPOINT [ "/startup.sh" ]
 
 CMD ["spark-shell"]
