@@ -1,4 +1,0 @@
-/opt true daemon 0644 0755
-/opt/jdk/bin/java false daemon 0755 0755
-/opt/spark-1.6.0-bin-hadoop2.6/bin/* false daemon 0755 0755
-/opt/spark-1.6.0-bin-hadoop2.6/sbin/* false daemon 0755 0755
