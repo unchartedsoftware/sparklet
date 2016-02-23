@@ -22,9 +22,9 @@ WORKDIR /opt
 
 RUN \
   # update packages
-  apk update && \
+  apk update --update && \
   # grab curl and ssh
-  apk add openssh vim curl procps && \
+  apk add --update openssh vim curl procps && \
   curl http://apache.mirror.gtcomm.net/spark/spark-1.6.0/spark-1.6.0-bin-hadoop2.6.tgz > spark.tgz && \
   # generate a keypair and authorize it
   mkdir -p /root/.ssh && \
@@ -50,7 +50,6 @@ ADD services/spark-slave2-run /etc/services.d/spark-slave2/run
 ADD fix-attrs/spark /etc/fix-attrs.d/spark
 
 ENV PATH /opt/spark-1.6.0-bin-hadoop2.6/bin:$PATH
-ENV JAVA_HOME /opt/jdk
 
 ENTRYPOINT [ "/init" ]
 
