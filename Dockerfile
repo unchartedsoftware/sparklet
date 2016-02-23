@@ -22,9 +22,9 @@ WORKDIR /opt
 
 RUN \
   # update packages
-  apk update && \
+  apk update --update && \
   # grab curl and ssh
-  apk add openssh vim curl procps && \
+  apk add --update openssh vim curl procps && \
   curl http://apache.mirror.gtcomm.net/spark/spark-1.6.0/spark-1.6.0-bin-hadoop2.6.tgz > spark.tgz && \
   # generate a keypair and authorize it
   mkdir -p /root/.ssh && \
@@ -36,7 +36,6 @@ RUN \
   rm spark.tgz
 
 ENV PATH /opt/spark-1.6.0-bin-hadoop2.6/bin:$PATH
-ENV JAVA_HOME /opt/jdk
 
 ADD startup.sh /startup.sh
 RUN chmod a+x /startup.sh
