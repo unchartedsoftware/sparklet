@@ -14,10 +14,12 @@ MAINTAINER Sean McIntyre <smcintyre@uncharted.software>
 
 # spark web admin port
 EXPOSE 8080
+
 # spark debugging port
 EXPOSE 9999
 
 WORKDIR /opt
+
 RUN \
   # update packages
   apk update && \
@@ -42,13 +44,12 @@ RUN \
 # upload init scripts
 ADD services/spark-master-run /etc/services.d/spark-master/run
 ADD services/spark-slave-run /etc/services.d/spark-slave/run
-ADD services/spark-stop /etc/services.d/spark-master/finish
 
 # upload permission fix script
 ADD fix-attrs/spark /etc/fix-attrs.d/spark
 
 ENV PATH /opt/spark-1.6.0-bin-hadoop2.6/bin:$PATH
-ENV JAVA_HOME=/opt/jdk
+ENV JAVA_HOME /opt/jdk
 
 ENTRYPOINT [ "/init" ]
 
