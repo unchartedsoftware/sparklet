@@ -1,3 +1,3 @@
 #!/usr/bin/with-contenv sh
 
-exec /opt/spark-1.6.0-bin-hadoop2.6/bin/spark-class org.apache.spark.deploy.worker.Worker --webui-port 8081 spark://$HOSTNAME:7077
+exec /opt/spark-1.6.1-bin-hadoop2.6/bin/spark-class org.apache.spark.deploy.worker.Worker --webui-port 8081 spark://$HOSTNAME:7077
