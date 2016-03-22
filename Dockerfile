@@ -22,7 +22,7 @@ WORKDIR /opt
 
 RUN \
   # update packages
-  apk upgrade --update && \
+  apk update --update && \
   # grab curl and ssh
   apk add --update openssh vim curl procps && \
   curl http://apache.mirror.gtcomm.net/spark/spark-1.6.0/spark-1.6.0-bin-hadoop2.6.tgz > spark.tgz && \
@@ -32,15 +32,21 @@ RUN \
   cat /root/.ssh/id_rsa.pub > /root/.ssh/authorized_keys && \
   # extract spark
   tar -xzf spark.tgz && \
-  # cleanup
-  rm spark.tgz
+  # cleanup spark tarball
+  rm spark.tgz && \
+  # s6 overlay
+  curl -LS https://github.com/just-containers/s6-overlay/releases/download/v1.17.1.1/s6-overlay-amd64.tar.gz -o /tmp/s6-overlay.tar.gz && \
+  tar xvfz /tmp/s6-overlay.tar.gz -C / && \
+  rm -f /tmp/s6-overlay.tar.gz
+
+
+# upload init scripts
+ADD services/spark-master-run /etc/services.d/spark-master/run
+ADD services/spark-slave-run /etc/services.d/spark-slave/run
+ADD services/spark-slave2-run /etc/services.d/spark-slave2/run
 
 ENV PATH /opt/spark-1.6.0-bin-hadoop2.6/bin:$PATH
-ENV JAVA_HOME /opt/jdk
 
-ADD startup.sh /startup.sh
-RUN chmod a+x /startup.sh
-
-ENTRYPOINT [ "/startup.sh" ]
+ENTRYPOINT [ "/init" ]
 
 CMD ["spark-shell"]
