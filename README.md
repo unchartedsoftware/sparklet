@@ -13,5 +13,5 @@ $ docker run -it uncharted/sparklet
 If you want to pass arguments to `spark-shell`:
 
 ```bash
-$ docker run -it uncharted/sparklet spark-shell --packages software.uncharted.sparkpipe:sparkpipe-core:0.9.7
+$ docker run -it uncharted/sparklet spark-shell --packages software.uncharted.sparkpipe:sparkpipe-core:1.0.0
 ```
