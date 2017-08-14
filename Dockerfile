@@ -12,7 +12,8 @@
 FROM anapsix/alpine-java:latest
 MAINTAINER Sean McIntyre <smcintyre@uncharted.software>
 
-# spark web admin port
+# spark web admin ports
+EXPOSE 4040
 EXPOSE 8080
 
 # spark debugging port
