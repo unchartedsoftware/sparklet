@@ -1,6 +1,6 @@
 #
 # Spark Standalone Container
-# Apache Spark 1.6.2
+# Apache Spark 1.6.3
 #
 # Runs a super-tiny, Spark standalone cluster in a container
 # Suitable for building test/development containers for spark apps
@@ -25,7 +25,7 @@ RUN \
   apk update --update && \
   # grab curl and ssh
   apk add --update openssh vim curl procps && \
-  curl http://apache.mirror.gtcomm.net/spark/spark-1.6.2/spark-1.6.2-bin-hadoop2.6.tgz > spark.tgz && \
+  curl http://apache.mirror.gtcomm.net/spark/spark-1.6.3/spark-1.6.3-bin-hadoop2.6.tgz > spark.tgz && \
   # generate a keypair and authorize it
   mkdir -p /root/.ssh && \
   ssh-keygen -f /root/.ssh/id_rsa -N "" && \
@@ -45,7 +45,7 @@ ADD services/spark-master-run /etc/services.d/spark-master/run
 ADD services/spark-slave-run /etc/services.d/spark-slave/run
 ADD services/spark-slave2-run /etc/services.d/spark-slave2/run
 
-ENV PATH /opt/spark-1.6.2-bin-hadoop2.6/bin:$PATH
+ENV PATH /opt/spark-1.6.3-bin-hadoop2.6/bin:$PATH
 
 ENTRYPOINT [ "/init" ]
 
