@@ -1,13 +1,13 @@
 #
 # Spark Standalone Container
-# Apache Spark 2.3.3
+# Apache Spark 2.4.3
 #
 # Runs a super-tiny, Spark standalone cluster in a container
 # Suitable for building test/development containers for spark apps
 #
 # Usage:
-# $ docker build -t uncharted/sparklet:2.3.3 .
-# $ docker run -p 8080:8080 -it uncharted/sparklet:2.3.3
+# $ docker build -t uncharted/sparklet:2.4.3 .
+# $ docker run -p 8080:8080 -it uncharted/sparklet:2.4.3
 
 FROM anapsix/alpine-java:latest
 LABEL author="Sean McIntyre <smcintyre@uncharted.software>"
@@ -26,7 +26,7 @@ RUN \
   apk update --update && \
   # grab curl and ssh
   apk add --update openssh vim curl procps && \
-  curl http://apache.mirror.gtcomm.net/spark/spark-2.3.3/spark-2.3.3-bin-hadoop2.6.tgz > spark.tgz && \
+  curl http://apache.mirror.gtcomm.net/spark/spark-2.4.3/spark-2.4.3-bin-hadoop2.6.tgz > spark.tgz && \
   # generate a keypair and authorize it
   mkdir -p /root/.ssh && \
   ssh-keygen -f /root/.ssh/id_rsa -N "" && \
@@ -46,7 +46,7 @@ ADD services/spark-master-run /etc/services.d/spark-master/run
 ADD services/spark-slave-run /etc/services.d/spark-slave/run
 ADD services/spark-slave2-run /etc/services.d/spark-slave2/run
 
-ENV PATH /opt/spark-2.3.3-bin-hadoop2.6/bin:$PATH
+ENV PATH /opt/spark-2.4.3-bin-hadoop2.6/bin:$PATH
 
 ENTRYPOINT [ "/init" ]
 
