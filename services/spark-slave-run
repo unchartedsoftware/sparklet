@@ -1,3 +1,3 @@
 #!/usr/bin/with-contenv sh
 
-exec env SPARK_WORKER_CORES=1 SPARK_WORKER_MEMORY=1g /opt/spark-3.2.0-bin-hadoop3.2/bin/spark-class org.apache.spark.deploy.worker.Worker --webui-port 8081 spark://$HOSTNAME:7077
+exec env SPARK_WORKER_CORES=1 SPARK_WORKER_MEMORY=1g /opt/spark-3.3.0-bin-hadoop3/bin/spark-class org.apache.spark.deploy.worker.Worker --webui-port 8081 spark://$HOSTNAME:7077
